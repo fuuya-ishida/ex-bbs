@@ -24,6 +24,14 @@
 				
 				投稿内容：<br>
 				<pre><span th:text="${articles.content}"></span></pre><br>
+				
+				<span th:each="commentList:${articles.commentList}">
+				コメント者名：<span th:text="${commentList.name}"></span><br>
+				
+				コメント内容：<br>
+				<pre><span th:text="${commentList.content}"></span></pre><br>
+				
+				</span>
 	</div>
 		</body>
 

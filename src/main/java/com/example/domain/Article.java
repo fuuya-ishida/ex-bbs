@@ -7,7 +7,7 @@ import java.util.List;
  * 
  * @author ishida fuya
  */
-public class Articles {
+public class Article {
 
 	/** ID */
 	private Integer id;

@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import com.example.domain.Articles;
+import com.example.domain.Article;
 
 /**
  * 記事情報の操作をするリポジトリ
@@ -19,12 +19,13 @@ import com.example.domain.Articles;
 @Repository
 public class BbsRepository {
 	
-	private static final RowMapper<Articles> ARTICLES_ROW_MAPPER = (rs, i) -> {
-		Articles articles = new Articles();
-		articles.setId(rs.getInt("id"));
-		articles.setName(rs.getString("name"));
-		articles.setContent(rs.getString("content"));
-		return articles;
+	private static final RowMapper<Article> ARTICLE_ROW_MAPPER = (rs, i) -> {
+		Article article = new Article();
+		article.setId(rs.getInt("id"));
+		article.setName(rs.getString("name"));
+		article.setContent(rs.getString("content"));
+		
+		return article;
 	};
 	
 	/** template */
@@ -37,10 +38,10 @@ public class BbsRepository {
 	 * 
 	 * @return 記事内容一覧
 	 */
-	public List<Articles> findAll() {
+	public List<Article> findAll() {
 		String sql= "SELECT id,name,content FROM articles ORDER BY id DESC";
 		
-		return template.query(sql, ARTICLES_ROW_MAPPER);
+		return template.query(sql, ARTICLE_ROW_MAPPER);
 	}
 	
 	/**
@@ -49,9 +50,9 @@ public class BbsRepository {
 	 * 
 	 * 
 	 */
-	public void insert(Articles articles) {
+	public void insert(Article article) {
 		
-		SqlParameterSource param = new BeanPropertySqlParameterSource(articles);
+		SqlParameterSource param = new BeanPropertySqlParameterSource(article);
 		String insertsql = "INSERT INTO articles(name,content) VALUES(:name,:content) ";
 		template.update(insertsql,param);
 		
