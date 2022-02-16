@@ -1,25 +1,23 @@
 package com.example.domain;
 
-import java.util.List;
-
 /**
- * 記事情報を表すドメイン
+ * コメント情報を表すドメイン
  * 
  * @author ishida fuya
  */
-public class Articles {
+public class Comment {
 
-	/** ID */
+	/** コメントID */
 	private Integer id;
 
 	/** 名前 */
 	private String name;
 
-	/** 記事内容 */
+	/** コメント内容 */
 	private String content;
 
-	/** コメントリスト */
-	private List<Comment> commentList;
+	/** 記事ID */
+	private Integer articled;
 
 	public Integer getId() {
 		return id;
@@ -43,20 +41,19 @@ public class Articles {
 
 	public void setContent(String content) {
 		this.content = content;
-
 	}
 
-	public List<Comment> getCommentList() {
-		return commentList;
+	public Integer getArticled() {
+		return articled;
 	}
 
-	public void setCommentList(List<Comment> commentList) {
-		this.commentList = commentList;
-
+	public void setArticled(Integer articled) {
+		this.articled = articled;
 	}
 
 	@Override
 	public String toString() {
-		return "Articles [id=" + id + ", name=" + name + ", content=" + content + ", commentList=" + commentList + "]";
+		return "Comment [id=" + id + ", name=" + name + ", content=" + content + ", articled=" + articled + "]";
 	}
+
 }
