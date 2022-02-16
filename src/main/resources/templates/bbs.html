@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>掲示板システム</title>
+</head>
+
+<body>
+
+	<form method="post" action="/search.html" th:action="@{/ExBbs/post}">
+		
+		投稿者名：<input type="text"  name="name"><br>
+		投稿内容：<textarea name="content"  cols="30" rows="10"></textarea><br>
+		<button type="submit">記事投稿</button>
+	</form>
+	
+	<hr>
+	<div th:each="articles:${session.articleList}">
+		
+				投稿者名：<span th:text="${articles.name}"></span><br>
+				
+				投稿内容：<br>
+				<pre><span th:text="${articles.content}"></span></pre><br>
+	</div>
+		</body>
+
+</html>
+	
