@@ -13,6 +13,12 @@ import com.example.domain.Comment;
 import com.example.service.BbsService;
 import com.example.service.CommentService;
 
+/**
+ * 掲示板情報を操作するコントローラー
+ * 
+ * @author ishida fuya
+ *
+ */
 @Controller
 @RequestMapping("/ExBbs")
 public class BbsController {
@@ -27,6 +33,12 @@ public class BbsController {
 	@Autowired
 	private HttpSession session;
 	
+	/**
+	 * 記事情報一覧の取得
+	 * 
+	 * @param 
+	 * @return 記事情報一覧
+	 */
 	@RequestMapping("")
 	public String Bbs() {
 		
@@ -42,6 +54,12 @@ public class BbsController {
 		return "/bbs";
 	}
 	
+	/**
+	 * 記事の投稿
+	 * 
+	 * @param name,comment
+	 * @return 
+	 */
 	@RequestMapping("/post")
 	public String insertArticle(String name,String content,Article article) {
 		article.setName(name);
@@ -51,6 +69,34 @@ public class BbsController {
 		return "/bbs";
 	}
 	
+	/**
+	 * コメントの投稿
+	 * 
+	 * @param comenterName,comment
+	 * @return 
+	 * */
+	@RequestMapping("/comment")
+	public String insertComment(String comenterName,String content,Integer id,Comment comment) {
+		comment.setName(comenterName);
+		comment.setContent(content);
+		comment.setArticleId(id);
+		commentService.insert(comment);
+		return "forward:/ExBbs";
+	}
+	
+	/**
+	 * コメント・記事の削除
+	 * @param
+	 * @return 
+	 * */
+	@RequestMapping("/delete")
+	public String deleteArticle(int id) {
+		commentService.deleteByArticleId(id);
+		bbsService.deleteById(id);
+		
+		
+		return "forward:/ExBbs";
+	}
 	
 
 }

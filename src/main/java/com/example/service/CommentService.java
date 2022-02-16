@@ -20,5 +20,13 @@ public class CommentService {
 		return commentRepository.findByArticleId(articleId);
 		
 	}
+	
+	public void insert(Comment comment) {
+		commentRepository.insert(comment);
+	}
+	
+	public void deleteByArticleId(int articleId) {
+		commentRepository.deleteByArticleId(articleId);
+	}
 
 }

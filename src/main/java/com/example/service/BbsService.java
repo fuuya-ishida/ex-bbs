@@ -23,4 +23,8 @@ public class BbsService {
 	public void insert(Article article) {
 		bbsRepository.insert(article);
 	}
+	
+	public void deleteById(int id) {
+		bbsRepository.deleteById(id);
+	}
 }

@@ -10,7 +10,7 @@
 
 <body>
 
-	<form method="post" action="/search.html" th:action="@{/ExBbs/post}">
+	<form method="post" action="/bbs.html" th:action="@{/ExBbs/post}">
 		
 		投稿者名：<input type="text"  name="name"><br>
 		投稿内容：<textarea name="content"  cols="30" rows="10"></textarea><br>
@@ -19,11 +19,16 @@
 	
 	<hr>
 	<div th:each="articles:${session.articleList}">
-		
+				
 				投稿者名：<span th:text="${articles.name}"></span><br>
 				
 				投稿内容：<br>
 				<pre><span th:text="${articles.content}"></span></pre><br>
+				
+				<form method="post" action="/search.html" th:action="@{/ExBbs/delete}">
+				<input type="hidden" name="id" th:value="${articles.id}">
+				<button type="submit">記事削除</button>
+				</form>
 				
 				<span th:each="commentList:${articles.commentList}">
 				コメント者名：<span th:text="${commentList.name}"></span><br>
@@ -32,6 +37,14 @@
 				<pre><span th:text="${commentList.content}"></span></pre><br>
 				
 				</span>
+				<form method="post" action="/search.html" th:action="@{/ExBbs/comment}">
+				名前：<input type="text" name="comenterName"><br>
+				コメント：<br>
+				<input type="hidden" name="id" th:value="${articles.id}">
+				<textarea name="content"  cols="30" rows="10"></textarea><br>
+				<button type="submit">コメント投稿</button>
+				
+				</form>
 	</div>
 		</body>
 
